@@ -9,6 +9,7 @@ import MealDetailScreen from './screens/MealDetailScreen';
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import FavoritesScreen from './screens/FavoritesScreen';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FavoritesContextProvider, { FavoritesContext } from './store/context/favorite-context';
 
 
 const Stack = createNativeStackNavigator()
@@ -31,7 +32,7 @@ function DrawerNavigator(){
         
         }}/>
     <Drawer.Screen name="Favorites" component={FavoritesScreen}   options={{
-         title: 'All Catego',
+         title: 'Favorites',
          drawerIcon: ({color, size}) => (<FontAwesome name="star" size={size} color={color} />),
         
         }}/>
@@ -42,6 +43,7 @@ export default function App() {
   return ( 
     <>
     <StatusBar style='light' />
+    <FavoritesContextProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
           headerStyle:{backgroundColor:'#351401'},
@@ -66,6 +68,7 @@ export default function App() {
          />
       </Stack.Navigator>
     </NavigationContainer>
+    </FavoritesContextProvider>
     </>
 
 
